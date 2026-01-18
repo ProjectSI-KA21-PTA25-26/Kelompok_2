@@ -4,5 +4,7 @@ Ridho Santoso (11122268) As System Analyst<br>
 Andira Putri Nirmala (10122172) As Designer<br>
 M. Zufrial Arif R. (11122022) As Programmer<br>
 
+Link Demo Website https://shaskinprod.onrender.com/
+
 Pada kesempatan ini kami akan membuat website untuk booking atau reservasi pada bisnis klinik kecantikan ShaSkin Beauty.
 Folder Dokumentasi Video https://drive.google.com/drive/folders/1q_aOdxQYS5Ew7TofCqE1ysTWZAsillR3?usp=sharing
