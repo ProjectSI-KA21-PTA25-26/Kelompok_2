@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"  # L'application sera accessible sur http://localhost:8080
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      # Database configuration for Docker
+      DB_HOST: db
+      DB_USERNAME: ${DOCKER_DB_USER:-user}
+      DB_PASSWORD: ${DOCKER_DB_PASSWORD:-password}
+      DB_NAME: ${DB_NAME:-edoc}
+      DB_PORT: 3306
+      APP_ENV: ${APP_ENV:-development}
+
+  db:
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOCKER_DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_NAME:-edoc}
+      MYSQL_USER: ${DOCKER_DB_USER:-user}
+      MYSQL_PASSWORD: ${DOCKER_DB_PASSWORD:-password}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./edoc.sql:/docker-entrypoint-initdb.d/init.sql  # Auto-import database on first run
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  db_data:
+
